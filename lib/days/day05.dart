@@ -1,6 +1,6 @@
 import '../main.dart';
 
-class Day04 extends Day {
+class Day05 extends Day {
 
   @override
   part1() {

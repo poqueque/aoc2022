@@ -1,4 +1,3 @@
-import '../extensions/extensions.dart';
 import '../main.dart';
 
 class Day01 extends Day {

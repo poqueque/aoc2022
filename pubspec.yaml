@@ -1,0 +1,9 @@
+name: aoc2022
+description: Advent of Code 2022 in Dart
+version: 1.0.0
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  http: ^0.13.5

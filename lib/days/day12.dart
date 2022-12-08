@@ -1,6 +1,8 @@
 import '../main.dart';
 
 class Day12 extends Day {
+  @override
+  init() {}
 
   @override
   part1() {

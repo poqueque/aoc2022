@@ -30,6 +30,8 @@ abstract class Day {
   late final List<String> inputList;
   late final String inputString;
   bool completed = false;
+
+  void init() {}
   dynamic part1();
   dynamic part2();
 
@@ -38,6 +40,7 @@ abstract class Day {
   void run() async {
     inputList = await File("data/$dataFileName").readAsLines();
     inputString = inputList[0];
+    init();
     print(part1());
     print(part2());
   }

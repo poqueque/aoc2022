@@ -1,6 +1,9 @@
 import '../main.dart';
 
 class Day07 extends Day {
+  @override
+  bool get completed => true;
+
   Dir root = Dir("/", null);
 
   @override

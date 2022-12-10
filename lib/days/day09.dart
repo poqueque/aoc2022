@@ -91,30 +91,23 @@ class Day09 extends Day {
   }
 
   void printMap() {
-    for (int y = -10; y < 6; y++) {
-      for (int x = -10; x < 20; x++) {
-        stdout.write(pos(Coor(x, y)));
-      }
-      print("");
+    print("");
+    CoorMap m = CoorMap();
+    for (int i=0; i<=9; i++){
+      m.map[rope[i]]="$i";
     }
+    for (var v in visited)
+      m.map[v]="#";
+    m.map[Coor(0,0)]="s";
+    m.printMap();
   }
 
   void printVisitedMap() {
-    for (int y = -10; y < 6; y++) {
-      for (int x = -10; x < 20; x++) {
-        if (visited.contains(Coor(x, y)))
-          stdout.write("#");
-        else
-          stdout.write(".");
-      }
-      print("");
-    }
-  }
-
-  String pos(Coor coor) {
-    if (coor == Coor(0, 0)) return "s";
-    for (int i = 0; i <= 9; i++) if (rope[i] == coor) return "$i";
-    if (visited.contains(coor)) return "#";
-    return ".";
+    print("");
+    CoorMap m = CoorMap();
+    for (var v in visited)
+      m.map[v]="#";
+    m.map[Coor(0,0)]="s";
+    m.printMap();
   }
 }

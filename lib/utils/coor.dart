@@ -75,6 +75,15 @@ class Coor {
       Coor(x + 1, y + 1),
     ];
   }
+
+  List<Coor> neighboursWithoutDiagonals() {
+    return [
+      Coor(x - 1, y),
+      Coor(x, y - 1),
+      Coor(x, y + 1),
+      Coor(x + 1, y),
+    ];
+  }
 }
 
 class CoorMap {

@@ -2,6 +2,9 @@ import '../main.dart';
 import '../utils/coor.dart';
 
 class Day14 extends Day {
+  @override
+  bool get completed => true;
+
   CoorMap<String> coorMap = CoorMap();
   late Map<Coor, String> map;
   Coor source = Coor(500, -1);
@@ -43,8 +46,7 @@ class Day14 extends Day {
     var floorY = coorMap.bounds(Direction.down) + 2;
     var lb = coorMap.bounds(Direction.left);
     var rb = coorMap.bounds(Direction.right);
-    for(int i = lb - 600; i < rb + 600; i++)
-      map[Coor(i,floorY)] = "#";
+    for (int i = lb - 600; i < rb + 600; i++) map[Coor(i, floorY)] = "#";
 
     var total = 0;
     Coor? fallingSand = fall();
@@ -54,7 +56,7 @@ class Day14 extends Day {
       total++;
       fallingSand = fall();
     }
-    if (fallingSand == belowSource){
+    if (fallingSand == belowSource) {
       map[belowSource] = "o";
       total++;
     }

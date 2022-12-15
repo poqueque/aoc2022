@@ -111,6 +111,42 @@ class Coor {
     }
     return list;
   }
+
+  double distance(Coor b) {
+    return sqrt(pow(x - b.x, 2) + pow(y - b.y, 2));
+  }
+
+  List<Coor> closestTo(double d) {
+    List<Coor> list = [];
+    for (int i = x - d.floor() - 1; i < x + d.floor() + 1; i++) {
+      for (int j = y - d.floor() - 1; j < y + d.floor() + 1; j++) {
+        if (distance(Coor(i, j)) <= d) list.add(Coor(i, j));
+      }
+    }
+    return list;
+  }
+
+  Set<Coor> atManhattanDistance(int d) {
+    Set<Coor> list = {};
+    for (int i = 0; i < d; i++) {
+      list.add(Coor(x - i, y - (d - i)));
+      list.add(Coor(x - i, y + (d - i)));
+      list.add(Coor(x + i, y - (d - i)));
+      list.add(Coor(x + i, y + (d - i)));
+    }
+    return list;
+  }
+
+  Set<Coor> atManhattanDistanceCapped(int d, int min, int max) {
+    Set<Coor> list = {};
+    for (int i = 0; i < d; i++) {
+      if(x-i >= min && y - (d - i) <= max) list.add(Coor(x - i, y - (d - i)));
+      if(x-i >= min && y + (d - i) <= max) list.add(Coor(x - i, y + (d - i)));
+      if(x+i >= min && y - (d - i) <= max) list.add(Coor(x + i, y - (d - i)));
+      if(x+i >= min && y + (d - i) <= max) list.add(Coor(x + i, y + (d - i)));
+    }
+    return list;
+  }
 }
 
 class CoorMap<T> {

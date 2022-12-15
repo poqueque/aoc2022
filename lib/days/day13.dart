@@ -4,12 +4,15 @@ import '../main.dart';
 
 class Day13 extends Day {
   @override
+  bool get completed => true;
+
+  @override
   init() {}
 
   @override
   part1() {
     var total = 0;
-    for (var i = 0; i < inputList.length; i+=3) {
+    for (var i = 0; i < inputList.length; i += 3) {
       var p1 = inputList[i];
       var p2 = inputList[i + 1];
       var p1json = jsonDecode(p1) as List<dynamic>;
@@ -17,7 +20,7 @@ class Day13 extends Day {
       int result = compare(p1json, p2json);
 //      print ("result: $result");
 //      print("");
-      if (result == 1) total+=((i~/3)+1);
+      if (result == 1) total += ((i ~/ 3) + 1);
     }
     return total;
   }
@@ -27,21 +30,25 @@ class Day13 extends Day {
     List data = [];
     var total = 0;
     for (var i = 0; i < inputList.length; i++) {
-      if (inputList[i].isNotEmpty){
+      if (inputList[i].isNotEmpty) {
         data.add(jsonDecode(inputList[i]) as List<dynamic>);
       }
     }
-    var sep1 = [[2]];
-    var sep2 = [[6]];
+    var sep1 = [
+      [2]
+    ];
+    var sep2 = [
+      [6]
+    ];
     data.add(sep1);
     data.add(sep2);
     data.sort(compare);
     data = data.reversed.toList();
-    var p1 = data.indexOf(sep1)+1;
-    var p2 = data.indexOf(sep2)+1;
-    print (p1);
-    print (p2);
-    return p1*p2;
+    var p1 = data.indexOf(sep1) + 1;
+    var p2 = data.indexOf(sep2) + 1;
+    print(p1);
+    print(p2);
+    return p1 * p2;
   }
 
   int compare(p1json, p2json) {

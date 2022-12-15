@@ -1,12 +1,18 @@
 import 'dart:math';
 
-enum Direction { left, right, up, down }
+enum Direction { left, right, up, down, leftDown, leftUp, rightDown, rightUp }
 
 class Coor {
-  final int x;
-  final int y;
+  late final int x;
+  late final int y;
 
   Coor(this.x, this.y);
+
+  Coor.fromString(String s) {
+    var p = s.split(",");
+    this.x = int.parse(p[0]);
+    this.y = int.parse(p[1]);
+  }
 
   Coor operator +(Coor d) {
     return Coor(x + d.x, y + d.y);
@@ -34,6 +40,14 @@ class Coor {
         return Coor(x - 1, y);
       case Direction.right:
         return Coor(x + 1, y);
+      case Direction.leftUp:
+        return Coor(x - 1, y - 1);
+      case Direction.rightUp:
+        return Coor(x + 1, y - 1);
+      case Direction.leftDown:
+        return Coor(x - 1, y + 1);
+      case Direction.rightDown:
+        return Coor(x + 1, y + 1);
     }
   }
 
@@ -84,16 +98,29 @@ class Coor {
       Coor(x + 1, y),
     ];
   }
+
+  List<Coor> pathTo(Coor c) {
+    List<Coor> list = [];
+    if (x == c.x) {
+      if (y < c.y) for (int i = y; i <= c.y; i++) list.add(Coor(x, i));
+      if (y > c.y) for (int i = c.y; i <= y; i++) list.add(Coor(x, i));
+    }
+    if (y == c.y) {
+      if (x < c.x) for (int i = x; i <= c.x; i++) list.add(Coor(i, y));
+      if (x > c.x) for (int i = c.x; i <= x; i++) list.add(Coor(i, y));
+    }
+    return list;
+  }
 }
 
-class CoorMap {
-  Map<Coor, dynamic> map = {};
+class CoorMap<T> {
+  Map<Coor, T> map = {};
 
   int bounds(Direction direction) {
-    var minX = 0;
-    var maxX = 0;
-    var minY = 0;
-    var maxY = 0;
+    var minX = 100000;
+    var maxX = -100000;
+    var minY = 100000;
+    var maxY = -100000;
     for (var k in map.keys) {
       if (k.x < minX) minX = k.x;
       if (k.x > maxX) maxX = k.x;
@@ -109,14 +136,18 @@ class CoorMap {
         return minX;
       case Direction.right:
         return maxX;
+      default:
+        return 0;
     }
   }
 
-  void printMap() {
+  void printMap({bool spaces = true}) {
     String line = "";
+    String s1 = spaces ? " " : "";
+    String s2 = spaces ? " " : ".";
     for (var y = bounds(Direction.up); y <= bounds(Direction.down); y++) {
       for (var x = bounds(Direction.left); x <= bounds(Direction.right); x++) {
-        line += " ${map[Coor(x, y)] ?? " "} ";
+        line += "$s1${map[Coor(x, y)] ?? "$s2"}$s1";
       }
       print(line);
       line = "";

@@ -28,7 +28,6 @@ class Day13 extends Day {
   @override
   part2() {
     List data = [];
-    var total = 0;
     for (var i = 0; i < inputList.length; i++) {
       if (inputList[i].isNotEmpty) {
         data.add(jsonDecode(inputList[i]) as List<dynamic>);

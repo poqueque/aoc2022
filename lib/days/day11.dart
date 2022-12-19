@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import '../main.dart';
 
@@ -70,7 +69,6 @@ class Day11 extends Day {
         m[i]!.operate(false);
       }
       if (round % 1000 == 0 || round == 1 || round == 20) {
-        var inspected = m.values.map((e) => e.itemsInspected).toList();
       }
     }
     var inspected = m.values.map((e) => e.itemsInspected).toList();

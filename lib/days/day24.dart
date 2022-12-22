@@ -2,7 +2,11 @@ import '../main.dart';
 
 class Day24 extends Day {
   @override
-  init() {}
+  init() {
+    for (var line in inputList) {
+      var p = line.split(" ");
+    }
+  }
 
   @override
   part1() {

@@ -3,8 +3,8 @@ import 'dart:math';
 enum Direction { left, right, up, down, leftDown, leftUp, rightDown, rightUp }
 
 class Coor {
-  late final int x;
-  late final int y;
+  late int x;
+  late int y;
 
   Coor(this.x, this.y);
 
@@ -177,10 +177,10 @@ class CoorMap<T> {
     }
   }
 
-  void printMap({bool spaces = true}) {
+  void printMap({bool spaces = true, String onNull = " "}) {
     String line = "";
     String s1 = spaces ? " " : "";
-    String s2 = spaces ? " " : ".";
+    String s2 = onNull;
     for (var y = bounds(Direction.up); y <= bounds(Direction.down); y++) {
       for (var x = bounds(Direction.left); x <= bounds(Direction.right); x++) {
         line += "$s1${map[Coor(x, y)] ?? "$s2"}$s1";

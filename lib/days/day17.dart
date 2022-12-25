@@ -43,33 +43,6 @@ class Day17 extends Day {
     return cave.length - 1;
   }
 
-  @override
-  part2new() {
-    var deleted = 0;
-    for (int i = 0; i < 2022; i++) {
-      var state = State(cave.reversed.take(CACHE_LENGTH).toList().reversed.toList(),nextMove,nextShape);
-      var cached = cache2[state];
-      if (cached == null){
-        var totalBefore = deleted + cave.length - 1;
-        step();
-        var totalAfter = deleted + cave.length - 1;
-        var nextState = State(cave.reversed.take(CACHE_LENGTH).toList().reversed.toList(),nextMove,nextShape);
-        nextState.firstSeenValue = totalAfter;
-        nextState.stepValue = totalAfter - totalBefore;
-        nextState.firstSeenAt = i+1;
-        cache2[state] = nextState;
-        deleted += cave.length - CACHE_LENGTH;
-        cave = cave.reversed.take(CACHE_LENGTH).toList().reversed.toList();
-      } else {
-        cave = cached.top;
-        nextMove = cached.move;
-        nextShape = cached.shape;
-        deleted += cached.stepValue;
-      }
-
-    }
-    return deleted + cave.length - 1;
-  }
   part2() {
     nextShape = 0;
     nextMove = 0;

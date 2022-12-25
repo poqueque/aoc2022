@@ -44,18 +44,39 @@ abstract class Day {
     print(part1());
     print(part2());
   }
+  Future<void> run1() async {
+    inputList = await File("data/$dataFileName").readAsLines();
+    inputString = inputList[0];
+    init();
+    print(part1());
+  }
+  Future<void> run2() async {
+    inputList = await File("data/$dataFileName").readAsLines();
+    inputString = inputList[0];
+    init();
+    print(part2());
+  }
 }
 
-void main() {
+void main() async {
   print('Advent Of Code 2022 - Dart');
-  List<Day> days = [Day01(), Day02(), Day03(), Day04(), Day05(),
+  List<Day> days1 = [Day01(), Day02(), Day03(), Day04(), Day05(),
     Day06(), Day07(), Day08(), Day09(), Day10(),
     Day11(), Day12(), Day13(), Day14(), Day15(),
     Day16(), Day17(), Day18(), Day19(), Day20(),
     Day21(), Day22(), Day23(), Day24(), Day25(),
   ];
-  var dayToRun = days.firstWhere((day) => !day.completed);
-  print("Running ${dayToRun.runtimeType.toString()}");
-  dayToRun.run();
+  List<Day> days2 = [Day01(), Day02(), Day03(), Day04(), Day05(),
+    Day06(), Day07(), Day08(), Day09(), Day10(),
+    Day11(), Day12(), Day13(), Day14(), Day15(),
+    Day16(), Day17(), Day18(), Day19(), Day20(),
+    Day21(), Day22(), Day23(), Day24(), Day25(),
+  ];
+  var dayToRun1 = days1.firstWhere((day) => !day.completed);
+  print("Running ${dayToRun1.runtimeType.toString()}");
+  await dayToRun1.run1();
+  //To avoid error for not resetting the state, we create a new object for each part;
+  var dayToRun2 = days2.firstWhere((day) => !day.completed);
+  await dayToRun2.run2();
 }
 

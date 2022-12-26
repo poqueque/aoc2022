@@ -4,6 +4,9 @@ import '../main.dart';
 import '../utils/coor.dart';
 
 class Day24 extends Day {
+  @override
+  bool get completed => true;
+
   List<Wind> blizzards = [];
   Map<int, List<Wind>> blizzardCache = {};
   Map<State, int> cache = {};
